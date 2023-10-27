@@ -54,6 +54,7 @@ export class UserListComponent implements OnInit {
   applyFilterStartsWith(searched : string){
     this.filtered_users = new StartsWithPipe().transform(this.users,searched);
     this.input_text_contains.nativeElement.value = "";
+    console.log(this.users);
   }
 
   removeUser(idUser : number){

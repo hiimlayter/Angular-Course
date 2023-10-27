@@ -13,6 +13,7 @@ import { MyFilterPipe } from './my-filter.pipe';
 import { FilterKeywordsPipe } from './filter-keywords.pipe';
 import { StartsWithPipe } from './starts-with.pipe';
 import { ContainsPipe } from './contains.pipe';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ContainsPipe } from './contains.pipe';
     FilterKeywordsPipe,
     StartsWithPipe,
     ContainsPipe,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

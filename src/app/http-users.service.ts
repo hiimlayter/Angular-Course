@@ -9,6 +9,8 @@ import { map } from 'rxjs';
 export class HttpUsersService {
   constructor(private httpClient: HttpClient) {}
 
+  usersList : User[] = [];
+
   getUsers() {
     let url = 'https://jsonplaceholder.typicode.com/users';
     return this.httpClient

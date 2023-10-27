@@ -1,0 +1,51 @@
+<p>edit-user works!</p>
+<form class="row g-3" #userForm="ngForm" (ngSubmit)="submit(userForm)">
+    <div class="col-md-6">
+        <label for="fullName" class="form-label">Imie i nazwisko</label>
+        <input #name_input="ngModel" required [(ngModel)]="user.fullName" class="form-control" name="fullName" type="text"/>
+        <div *ngIf="name_input.invalid && name_input.touched" class="text-danger">Pole jest wymagane</div>
+    </div>
+    <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input #email_input="ngModel" email="true" required [(ngModel)]="user.email" id="email" name="email" class="form-control" type="email"/>
+    <div *ngIf="email_input.invalid && email_input.touched && email_input.errors?.['required']" class="text-danger">Pole jest wymagane</div>
+    <div *ngIf="email_input.invalid && email_input.touched && email_input.errors?.['email']" class="text-danger">Email musi zawierać znak @</div>
+    </div>
+    <div class="col-md-4">
+        <label for="website" class="form-label">WWW</label>
+        <select #www_input="ngModel" required [(ngModel)]="user.website" name="website" class="form-select" type="text">
+            <option *ngFor="let website of websites" [value]="website">{{website}}</option>
+        </select>
+        <div *ngIf="www_input.invalid && www_input.touched" class="text-danger">Pole jest wymagane</div>
+    </div>
+    <div class="col-md-4">
+        <label for="phone" class="form-label">Numer telefonu</label>
+        <input #phone_input="ngModel" required pattern="[0-9]{9}" [(ngModel)]="user.phone" name="phone" class="form-control" type="phone">
+        <div *ngIf="phone_input.invalid && phone_input.touched && phone_input.errors?.['required']" class="text-danger">Pole jest wymagane</div>
+        <div *ngIf="phone_input.invalid && phone_input.touched && phone_input.errors?.['pattern']" class="text-danger">Numer telefonu musi składać sie z 9 cyfr</div>
+    </div>
+    <br/>
+
+    <div class="col-md-4">
+        <br/>
+        <input #isActive_input="ngModel" [(ngModel)]="user.isActive" type="checkbox" class="btn-check" id="btn-check" name="isActive" autocomplete="off">
+        <label class="btn btn-danger" for="btn-check" style="width: 100%; margin-top: 10px;">Aktywny</label>
+    </div>
+
+    <div class="row g-3" style="margin-left: 2px;">
+        <div class="col-md-6">
+            <button [disabled]="disabledSubmit" type="submit" class="btn btn-danger" style="width: 100%;">Dodaj uzytkownika</button>
+        </div>
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-secondary" style="width: 100%;">Wyczyść</button>
+        </div>
+    </div>
+
+    <div *ngIf="userAddSuccess" style="margin-top: 10px;" class="col-md-12 alert alert-success">
+        Dodano użytkownika
+    </div>
+
+    <div *ngIf="userAddError" style="margin-top: 10px;" class="col-md-12 alert alert-success">
+        Wystąpił błąd
+    </div>
+</form>
