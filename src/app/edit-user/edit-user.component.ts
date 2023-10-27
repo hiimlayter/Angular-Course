@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { User } from '../user';
-import { NgForm } from '@angular/forms';
 import { HttpUsersService } from '../http-users.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-user-add',
-  templateUrl: './user-add.component.html',
-  styleUrls: ['./user-add.component.css']
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css']
 })
-export class UserAddComponent {
+export class EditUserComponent {
   validationMessage : string = "";
   user : User = new User(1,"","","","",false);
   websites : string[] = ['www.gmial.com', 'www.youtube.com', 'www.x.com'];
@@ -17,7 +17,7 @@ export class UserAddComponent {
   userAddSuccess : boolean = false;
 
   disabledSubmit : boolean = false;
-
+  
   constructor(private httpUsersService: HttpUsersService) {}
 
     submit(form: NgForm){

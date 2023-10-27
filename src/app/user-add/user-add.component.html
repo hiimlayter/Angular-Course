@@ -35,8 +35,21 @@
             <label class="btn btn-danger" for="btn-check" style="width: 100%; margin-top: 10px;">Aktywny</label>
         </div>
 
-        <div>
-            <button type="submit" class="btn btn-danger" style="width: 100%;">Dodaj uzytkownika</button>
+        <div class="row g-3" style="margin-left: 2px;">
+            <div class="col-md-6">
+                <button [disabled]="disabledSubmit" type="submit" class="btn btn-danger" style="width: 100%;">Dodaj uzytkownika</button>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-secondary" style="width: 100%;">Wyczyść</button>
+            </div>
+        </div>
+
+        <div *ngIf="userAddSuccess" style="margin-top: 10px;" class="col-md-12 alert alert-success">
+            Dodano użytkownika
+        </div>
+    
+        <div *ngIf="userAddError" style="margin-top: 10px;" class="col-md-12 alert alert-success">
+            Wystąpił błąd
         </div>
     </form>
 
