@@ -1,0 +1,9 @@
+.nav-background{
+    background-color: crimson !important;
+    font-weight: bold;
+}
+
+.nav-active{
+    color: black;
+    font-weight: bold;
+}

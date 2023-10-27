@@ -1,0 +1,61 @@
+<div class="mx-auto p-5 container-lg">
+    <div class="form-check form-switch">
+        <p class="fs-1 fw-bold text-center">Lista użytkowników</p>
+        <div>
+            <input class="form-check-input" type="checkbox" (click)="changeShowType()" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">{{showType}}</label>
+        </div>
+        <div *ngIf="isErrorOccured" class="fs-2 text-danger fw-bold">Błąd</div>
+      </div>
+
+    <div>
+        <div class="input-group">
+            <span class="input-group-text" style="width: 7%;">Początek</span>
+            <input #input_text_start type="text" class="form-control" id="floatingStartsWith" placeholder="Wyszukaj po początku imienia" (keyup)="applyFilterStartsWith(input_text_start.value)">
+        </div>
+        <div class="input-group">
+            <span class="input-group-text" style="width: 7%;">Treść</span>
+            <input #input_text_contains type="text" class="form-control" id="floatingContains" placeholder="Wyszukaj po zawartości" (keyup)="applyFilterContains(input_text_contains.value)">
+        </div>
+    </div>
+
+    <div *ngIf="errorMessage!=''" class="alert alert-danger m-2">
+        <span>{{errorMessage}}</span>
+    </div>
+
+    <hr>
+
+    <table *ngIf="showType == 'Lista'" class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imie i nazwisko</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>WWW</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of filtered_users">
+                <td>{{user.id}}</td>
+                <td>{{user.fullName | filterKeywords}}</td>
+                <td>{{user.email | myFilter}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.website}}</td>
+                <td><button (click)="removeUser(user.id)" class="form-control btn btn-danger">Usuń</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="showType == 'Kafle'" class="row row-cols-1 row-cols-md-3 g-1">
+        <div *ngFor="let user of filtered_users" class="card" style="width: 25%;">
+            <div class="card-body">
+            <h5 class="card-title">{{user.fullName | filterKeywords}}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{user.email | myFilter}}</h6>
+            <p class="card-text">{{user.website}}</p>
+            <button (click)="removeUser(user.id)" class="form-control btn btn-danger">Usuń</button>
+            </div>
+        </div>
+    </div>
+
+</div>
