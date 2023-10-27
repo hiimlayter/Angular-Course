@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: "add-user", component: UserAddComponent},
   {path: "home", component: HomeComponent},
   {path: '**', redirectTo: '/home', pathMatch: 'full' },
-  {path: 'edit-user', component: EditUserComponent}
+  {path: "edit-users/:id", component: EditUserComponent},
 ];
 
 @NgModule({

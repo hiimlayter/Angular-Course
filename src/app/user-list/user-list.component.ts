@@ -3,6 +3,7 @@ import { User } from '../user';
 import { HttpUsersService } from '../http-users.service';
 import { StartsWithPipe } from '../starts-with.pipe';
 import { ContainsPipe } from '../contains.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -19,7 +20,7 @@ export class UserListComponent implements OnInit {
   @ViewChild('input_text_start') input_text_start: any; 
   @ViewChild('input_text_contains') input_text_contains: any; 
 
-  constructor(private httpUsersService: HttpUsersService) {}
+  constructor(private httpUsersService: HttpUsersService, private router: Router) {}
 
   ngOnInit(): void {
     this.httpUsersService.getUsers().subscribe({
